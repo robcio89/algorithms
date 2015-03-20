@@ -1,6 +1,7 @@
 #include <iostream>
 #include <math.h>
 #include <algorithm>
+#include <vector>
 
 int binary_search(int tab[], int left, int right, int x)
 {
@@ -21,7 +22,8 @@ int binary_search(int tab[], int left, int right, int x)
 	else
 	{
 		mid = binary_search(tab, mid+1, right, x);
-	}	
+	}
+	return mid;
 }
 
 int main()
@@ -33,8 +35,10 @@ int main()
 	t[3] = 8;
 	t[4] = 10;
 
+	std::vector<int> v{ 2, 5, 7, 8, 10 };
+
 	std::cout << "My implementation: " << binary_search(t, 2, 10, 8) << std::endl;
-	//std::cout << "std implementation: " << std::binary_search()
+	std::cout << "std implementation: " << std::binary_search(v.begin(), v.end(), 8) << std::endl;;
 
 	return 0;
 }
