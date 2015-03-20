@@ -26,6 +26,29 @@ int binary_search(int tab[], int left, int right, int x)
 	return mid;
 }
 
+int binary_search2(std::vector<int>& v, int left, int right, int x)
+{
+	if (right < left)
+		return -1;
+
+	int mid = floor((left + right) / 2);
+
+	if (v[mid] == x)
+	{
+		return mid;
+	}
+
+	if (x < v[mid])
+	{
+		mid = binary_search2(v, left, mid - 1, x);
+	}
+	else
+	{
+		mid = binary_search2(v, mid + 1, right, x);
+	}
+	return mid;
+}
+
 int main()
 {
 	int *t = new int[5];
@@ -37,7 +60,8 @@ int main()
 
 	std::vector<int> v{ 2, 5, 7, 8, 10 };
 
-	std::cout << "My implementation: " << binary_search(t, 2, 10, 8) << std::endl;
+	std::cout << "My implementation: " << binary_search(t, 0, 4, 8) << std::endl;
+	std::cout << "My implementation2: " << binary_search2(v, 0, 4, 8) << std::endl;
 	std::cout << "std implementation: " << std::binary_search(v.begin(), v.end(), 8) << std::endl;;
 
 	return 0;
